@@ -55,6 +55,8 @@
             --shadow-sm: 0 2px 8px rgba(0, 11, 51, 0.08);
             --shadow-md: 0 4px 16px rgba(0, 11, 51, 0.12);
             --shadow-lg: 0 8px 32px rgba(0, 11, 51, 0.16);
+            --neo-shadow: 12px 12px 24px rgba(163, 177, 198, 0.5), -12px -12px 24px rgba(255, 255, 255, 0.8);
+            --neo-shadow-inset: inset 6px 6px 12px rgba(163, 177, 198, 0.5), inset -6px -6px 12px rgba(255, 255, 255, 0.8);
             --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -74,9 +76,11 @@
             --white: #0D1321;
             --gradient-primary: linear-gradient(135deg, #7BA1E6 0%, #A3B5D8 100%);
             --gradient-secondary: linear-gradient(135deg, #596A9E 0%, #698ACF 100%);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 10px 10px -5px rgba(0, 0, 0, 0.6);
+            --neo-shadow: 8px 8px 16px rgba(0, 0, 0, 0.6), -8px -8px 16px rgba(30, 41, 59, 0.4);
+            --neo-shadow-inset: inset 4px 4px 8px rgba(0, 0, 0, 0.6), inset -4px -4px 8px rgba(30, 41, 59, 0.4);
         }
 
         [data-theme="dark"] body {
@@ -129,7 +133,8 @@
         }
 
         [data-theme="dark"] .hero-image-container {
-            background: linear-gradient(135deg, #1A2744 0%, #2A3F66 100%);
+            background: var(--white);
+            box-shadow: var(--neo-shadow);
         }
 
         [data-theme="dark"] .hero-image-content {
@@ -764,31 +769,50 @@
         .hero-image {
             position: relative;
             animation: slideInRight 1s ease-out;
+            max-width: 450px; /* Constrain max width for UI safety */
+            margin: 0 auto;
         }
 
         .hero-image-container {
             position: relative;
-            background: var(--gradient-primary);
-            border-radius: 24px;
-            padding: 12px;
-            box-shadow: var(--shadow-lg);
-            animation: imageGlow 3s ease-in-out infinite;
+            background: var(--white); /* Root background for neomorphism */
+            border-radius: 32px; /* Smoother curve */
+            padding: 16px; /* Space for the inner neomorphic well */
+            box-shadow: var(--neo-shadow); /* Outer neomorphic extrusion */
+            transition: var(--transition);
+        }
+
+        .hero-image-container:hover {
+            transform: translateY(-5px);
         }
 
         .hero-image-content {
             background: var(--white);
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
             position: relative;
+            box-shadow: var(--neo-shadow-inset); /* Inner neomorphic depression */
+            border: 2px solid rgba(255, 255, 255, 0.5); /* Subtle rim light */
         }
 
         .hero-profile-image {
             width: 100%;
-            height: 600px; /* Taller to show full body */
-            object-fit: contain;
-            object-position: top; /* Shifted up as requested */
+            height: auto;
+            aspect-ratio: 3 / 4; /* Strict 3:4 aspect ratio */
+            object-fit: contain; /* Prevent cropping while maintaining aspect ratio */
+            object-position: bottom; /* Anchor to bottom */
             background: transparent;
             display: block;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+        }
+
+        .hero-image-container:hover .hero-profile-image {
+            transform: scale(1.05) translateY(-10px); /* Subtle premium hover */
+        }
+
+        [data-theme="dark"] .hero-image-content {
+            border-color: rgba(123, 161, 230, 0.1);
         }
 
         .hero-image-info {
