@@ -1605,16 +1605,17 @@
             .hero-stat-label { font-size: 11px; }
             
             /* Service cards specifically */
-            .service-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
+            .service-card { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; aspect-ratio: 1 / 1; padding: 24px; }
             .service-icon { margin: 0 auto 20px auto; }
             
             /* Project cards specifically */
+            .project-card { aspect-ratio: 1 / 1; justify-content: center; padding: 24px; }
             .project-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
             .project-tags { justify-content: center; width: 100%; margin: 0 auto 16px auto; }
-            .project-content div[style*="display: flex"] { justify-content: center; margin: 12px auto 0 auto; }
+            .project-content div[style*="display: flex"] { justify-content: center; margin: 12px auto 0 auto; flex-wrap: wrap; gap: 10px; }
             
             /* Testimonial cards specifically */
-            .testimonial-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
+            .testimonial-card { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; aspect-ratio: 1 / 1; padding: 24px; }
             .testimonial-stars { justify-content: center; display: flex; margin: 0 auto 20px auto; }
             .testimonial-author { flex-direction: column; align-items: center; }
             .testimonial-avatar { margin-bottom: 12px; }
