@@ -115,15 +115,12 @@
             }
         }
 
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
+        @keyframes imageGlow {
+            0%, 100% {
+                box-shadow: 0 0 40px rgba(148, 177, 235, 0.3);
             }
             50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
+                box-shadow: 0 0 60px rgba(148, 177, 235, 0.5);
             }
         }
 
@@ -422,40 +419,68 @@
             position: relative;
             background: var(--gradient-primary);
             border-radius: 24px;
-            padding: 40px;
+            padding: 12px;
             box-shadow: var(--shadow-lg);
+            animation: imageGlow 3s ease-in-out infinite;
         }
 
         .hero-image-content {
             background: var(--white);
-            border-radius: 16px;
-            padding: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-profile-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-image-info {
+            padding: 32px;
             text-align: center;
+        }
+
+        .hero-image-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 8px;
+        }
+
+        .hero-image-info p {
+            color: var(--text-medium);
+            font-size: 15px;
+            margin-bottom: 24px;
         }
 
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 32px;
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0, 11, 51, 0.1);
         }
 
         .hero-stat {
             background: var(--light-blue);
-            padding: 24px;
+            padding: 20px;
             border-radius: 12px;
             text-align: center;
         }
 
         .hero-stat-number {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
             color: var(--primary-navy);
             display: block;
         }
 
         .hero-stat-label {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-medium);
             margin-top: 4px;
         }
@@ -580,21 +605,60 @@
         .about-image-container {
             background: var(--gradient-primary);
             border-radius: 24px;
-            padding: 8px;
+            padding: 12px;
             box-shadow: var(--shadow-lg);
+            animation: imageGlow 3s ease-in-out infinite;
         }
 
         .about-image-content {
             background: var(--white);
             border-radius: 20px;
-            padding: 40px;
+            overflow: hidden;
+        }
+
+        .about-profile-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-image-info {
+            padding: 32px;
             text-align: center;
         }
 
-        .about-image-content i {
-            font-size: 80px;
+        .about-image-info h3 {
+            font-size: 24px;
+            font-weight: 700;
             color: var(--primary-navy);
-            margin-bottom: 20px;
+            margin-bottom: 8px;
+        }
+
+        .about-image-info p {
+            color: var(--text-medium);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .about-education {
+            padding: 24px;
+            background: var(--light-blue);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .about-education h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 8px;
+        }
+
+        .about-education p {
+            font-size: 14px;
+            color: var(--text-medium);
+            line-height: 1.6;
         }
 
         .about-text h2 {
@@ -1124,6 +1188,11 @@
             .section {
                 padding: 80px 0;
             }
+
+            .hero-profile-image,
+            .about-profile-image {
+                height: 300px;
+            }
         }
 
         /* ============================================
@@ -1193,7 +1262,7 @@
                 <div class="hero-text">
                     <div class="hero-badge">
                         <i class="fas fa-check-circle"></i>
-                        <span>Trusted by Healthcare Professionals</span>
+                        <span id="heroBadgeText">Trusted by Healthcare Professionals</span>
                     </div>
                     <h1>Healthcare Websites Built for <span>Modern Practices</span></h1>
                     <p class="hero-subtitle">I design and develop high-performance websites for doctors, clinics, and healthcare providers. HIPAA-compliant, patient-focused, and conversion-optimized.</p>
@@ -1211,17 +1280,20 @@
                 <div class="hero-image">
                     <div class="hero-image-container">
                         <div class="hero-image-content">
-                            <i class="fas fa-user-md" style="font-size: 80px; color: #000B33; margin-bottom: 20px;"></i>
-                            <h3 style="font-size: 24px; font-weight: 700; color: #000B33; margin-bottom: 8px;">Prince Tigga</h3>
-                            <p style="color: #6F7C86; font-size: 15px;">Electronics & Communication Engineer<br>AI & Web Development Specialist</p>
-                            <div class="hero-stats">
-                                <div class="hero-stat">
-                                    <span class="hero-stat-number" data-count="15">0</span>
-                                    <span class="hero-stat-label">Projects Completed</span>
-                                </div>
-                                <div class="hero-stat">
-                                    <span class="hero-stat-number" data-count="100">0</span>
-                                    <span class="hero-stat-label">Client Satisfaction %</span>
+                            <!-- YOUR PHOTO HERE - HERO SECTION -->
+                            <img src="prince-photo.jpg" alt="Prince Tigga" class="hero-profile-image">
+                            <div class="hero-image-info">
+                                <h3>Prince Tigga</h3>
+                                <p>Electronics & Communication Engineer<br>AI & Web Development Specialist</p>
+                                <div class="hero-stats">
+                                    <div class="hero-stat">
+                                        <span class="hero-stat-number" data-count="15">0</span>
+                                        <span class="hero-stat-label">Projects Completed</span>
+                                    </div>
+                                    <div class="hero-stat">
+                                        <span class="hero-stat-number" data-count="100">0</span>
+                                        <span class="hero-stat-label">Client Satisfaction %</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1320,15 +1392,15 @@
                 <div class="about-image fade-in-left">
                     <div class="about-image-container">
                         <div class="about-image-content">
-                            <i class="fas fa-user-graduate"></i>
-                            <h3 style="font-size: 24px; font-weight: 700; color: #000B33; margin-bottom: 8px;">Prince Tigga</h3>
-                            <p style="color: #6F7C86; font-size: 15px;">B.Tech ECE | AI Developer | Web Solutions</p>
-                            <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(0,11,51,0.1);">
-                                <p style="color: #222A32; font-size: 14px; line-height: 1.8;">
-                                    <strong>Tezpur University</strong><br>
-                                    Electronics & Communication Engineering<br>
-                                    <span style="color: #6F7C86;">4th Semester - Currently Pursuing</span>
-                                </p>
+                            <!-- YOUR PHOTO HERE - ABOUT SECTION -->
+                            <img src="prince-photo.jpg" alt="Prince Tigga" class="about-profile-image">
+                            <div class="about-image-info">
+                                <h3>Prince Tigga</h3>
+                                <p>B.Tech ECE | AI Developer | Web Solutions</p>
+                                <div class="about-education">
+                                    <h4><i class="fas fa-graduation-cap"></i> Tezpur University</h4>
+                                    <p>Electronics & Communication Engineering<br><strong>4th Semester - Currently Pursuing</strong></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1815,8 +1887,7 @@
         // ============================================
         // TYPING EFFECT FOR HERO BADGE
         // ============================================
-        const heroBadgeText = document.querySelector('.hero-badge span');
-        const originalText = heroBadgeText.textContent;
+        const heroBadgeText = document.getElementById('heroBadgeText');
         const phrases = [
             'Trusted by Healthcare Professionals',
             'HIPAA-Compliant Solutions',
