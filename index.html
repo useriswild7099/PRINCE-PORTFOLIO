@@ -1574,21 +1574,22 @@
             
             /* Images & Cards */
             .hero-image-container {
-                padding: 10px; /* Reduce outer neomorphic padding */
+                padding: 12px; /* Smooth neomorphic padding */
                 border-radius: 24px;
-                max-width: 280px; /* Constrain width strictly */
+                max-width: 400px; /* Don't restrict severely, let it stretch naturally */
+                width: 100%;
                 margin: 0 auto;
             }
             .hero-image-content {
                 border-radius: 16px; 
             }
             .hero-profile-image, .about-profile-image { 
-                height: 320px !important; /* Fixed height instead of aspect ratio on mobile */
+                height: auto !important; 
                 width: 100%; 
-                object-fit: cover; 
-                object-position: top; /* Keep face in view */
+                aspect-ratio: 1 / 1 !important; /* Perfect square layout */
+                object-fit: cover !important; 
+                object-position: top center !important; /* Keep focus on face/suit */
                 border-radius: 16px; 
-                aspect-ratio: auto; /* Override desktop aspect ratio */
             }
             .hero-image-info { 
                 padding: 15px; 
